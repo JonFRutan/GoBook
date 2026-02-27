@@ -22,7 +22,8 @@ func main() {
 	//fmt.Println("go"+"lang", 7.2/3.1, 1+1, "Yep. That is", true, "and not", false)
 	//var a = "This is the beginning"
 	//var g int
-	//g = 3
+	//g := 3
+	//g = 4
 	//goofy := "Potato Tomato"
 	//fmt.Println(a, g, goofy)
 	//i := 1
