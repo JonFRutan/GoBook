@@ -31,10 +31,12 @@ func printTask(id int, waitGroup *sync.WaitGroup, taskChannel chan *result) (tas
 		waitTime := time.Duration(rand.Intn(2)) * time.Second
 		time.Sleep(waitTime) 
 	}
-	if taskSum % 2 == 0 {
+	switch {
+	case taskSum % 2 == 0:
 		isOdd = false
-	} else {
+	default:
 		isOdd = true
+
 	}
 	taskChannel <- &result{Id: id, Sum: taskSum, IsOdd: isOdd}
 	//%d is used for a decimal number, %s for strings, %t for bool values.
@@ -43,6 +45,9 @@ func printTask(id int, waitGroup *sync.WaitGroup, taskChannel chan *result) (tas
 }
 
 func main() {
+	//defer will make this execution wait until the very of of this function. This happens regardless of failure or success.
+	//defers are pushed into a stack. Deferred calls are executed in last-in-first-out order
+	defer fmt.Println("Finished :]")
 	//creating a waitgroup that will make the main process wait for all goroutines to finish before continuing
 	var waitGroup sync.WaitGroup
 	//channels are used for inter routine data communication
